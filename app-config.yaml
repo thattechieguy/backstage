@@ -1,6 +1,8 @@
 app:
-  title: Backstage Example App
+  title: Cloud Bicep Backstage
   baseUrl: http://localhost:3000
+  environment: production
+  organization: Cloud Bicep
   #datadogRum:
   #  clientToken: '123456789'
   #  applicationId: qwerty
@@ -39,6 +41,16 @@ backend:
     credentials: true
   csp:
     connect-src: ["'self'", 'http:', 'https:']
+  client: postgres
+  connection: 
+     host: ${POSTGRES_HOST}
+     port: ${POSTGRES_PORT}
+     user: ${POSTGRES_USER}
+     password: ${POSTGRES_PASSWORD}
+
+  cache: 
+     store: memory
+
     # Content-Security-Policy directives follow the Helmet format: https://helmetjs.github.io/#reference
     # Default Helmet Content-Security-Policy values can be removed by setting the key to false
   reading:
@@ -125,7 +137,7 @@ proxy:
     target: https://your.puppetdb.instance.com
 
 organization:
-  name: My Company
+  name: CloudBicep
 
 # Reference documentation http://backstage.io/docs/features/techdocs/configuration
 # Note: After experimenting with basic setup, use CI/CD to generate docs
@@ -152,10 +164,10 @@ scorecards:
   wikiLinkTemplate: https://link-to-wiki/{id}
 
 sentry:
-  organization: my-company
+  organization: CloudBicep
 
 rollbar:
-  organization: my-company
+  organization: CloudBicep
   # NOTE: The rollbar-backend & accountToken key may be deprecated in the future (replaced by a proxy config)
   accountToken: my-rollbar-account-token
 
