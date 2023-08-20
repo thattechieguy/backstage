@@ -31,6 +31,16 @@ export interface Config {
       secret?: string;
     };
 
+    /**
+     * JWS "alg" (Algorithm) Header Parameter value. Defaults to ES256.
+     * Must match one of the algorithms defined for IdentityClient.
+     * When setting a different algorithm, check if the `key` field
+     * of the `signing_keys` table can fit the length of the generated keys.
+     * If not, add a knex migration file in the migrations folder.
+     * More info on supported algorithms: https://github.com/panva/jose
+     */
+    identityTokenAlgorithm?: string;
+
     /** To control how to store JWK data in auth-backend */
     keyStore?: {
       provider?: 'database' | 'memory' | 'firestore';
@@ -62,6 +72,7 @@ export interface Config {
      * @additionalProperties true
      */
     providers?: {
+      /** @visibility frontend */
       google?: {
         [authEnv: string]: {
           clientId: string;
@@ -72,6 +83,7 @@ export interface Config {
           callbackUrl?: string;
         };
       };
+      /** @visibility frontend */
       github?: {
         [authEnv: string]: {
           clientId: string;
@@ -83,6 +95,7 @@ export interface Config {
           enterpriseInstanceUrl?: string;
         };
       };
+      /** @visibility frontend */
       gitlab?: {
         [authEnv: string]: {
           clientId: string;
@@ -94,6 +107,7 @@ export interface Config {
           callbackUrl?: string;
         };
       };
+      /** @visibility frontend */
       saml?: {
         entryPoint: string;
         logoutUrl?: string;
@@ -117,6 +131,7 @@ export interface Config {
         digestAlgorithm?: string;
         acceptedClockSkewMs?: number;
       };
+      /** @visibility frontend */
       okta?: {
         [authEnv: string]: {
           clientId: string;
@@ -130,6 +145,7 @@ export interface Config {
           callbackUrl?: string;
         };
       };
+      /** @visibility frontend */
       oauth2?: {
         [authEnv: string]: {
           clientId: string;
@@ -143,6 +159,7 @@ export interface Config {
           disableRefresh?: boolean;
         };
       };
+      /** @visibility frontend */
       oidc?: {
         [authEnv: string]: {
           clientId: string;
@@ -152,10 +169,13 @@ export interface Config {
           clientSecret: string;
           callbackUrl?: string;
           metadataUrl: string;
+          tokenEndpointAuthMethod?: string;
+          tokenSignedResponseAlg?: string;
           scope?: string;
           prompt?: string;
         };
       };
+      /** @visibility frontend */
       auth0?: {
         [authEnv: string]: {
           clientId: string;
@@ -170,6 +190,7 @@ export interface Config {
           connectionScope?: string;
         };
       };
+      /** @visibility frontend */
       microsoft?: {
         [authEnv: string]: {
           clientId: string;
@@ -181,6 +202,7 @@ export interface Config {
           callbackUrl?: string;
         };
       };
+      /** @visibility frontend */
       onelogin?: {
         [authEnv: string]: {
           clientId: string;
@@ -192,10 +214,12 @@ export interface Config {
           callbackUrl?: string;
         };
       };
+      /** @visibility frontend */
       awsalb?: {
         iss?: string;
         region: string;
       };
+      /** @visibility frontend */
       cfaccess?: {
         teamName: string;
       };

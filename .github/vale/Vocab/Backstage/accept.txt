@@ -123,8 +123,11 @@ FireHydrant
 Firekube
 Firestore
 Fiverr
+Flightcontrol
+flightcontrol
 Francesco
 Frontside
+Gaurav
 gerrit
 Gerrit
 gitbeaker
@@ -164,6 +167,7 @@ inlined
 inlinehilite
 integrator's
 interop
+iterable
 JaCoCo
 JavaScript
 jenkins
@@ -213,6 +217,7 @@ middleware
 minikube
 Minikube
 Minio
+misattributed
 misconfiguration
 misconfigured
 mkdocs
@@ -256,6 +261,7 @@ padding
 paddings
 pagerduty
 pageview
+Pandey
 parallelization
 parseable
 Patrik
@@ -402,13 +408,16 @@ Uffizzi
 ui
 unbreak
 Unconference
+unicode
 unmanaged
+unmount
 unregister
 unregistering
 unregistration
 untracked
 upsert
 upvote
+url
 URIs
 URLs
 utils

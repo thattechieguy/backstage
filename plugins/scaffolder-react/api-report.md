@@ -295,7 +295,7 @@ export interface ScaffolderUseTemplateSecrets {
 // @public
 export const SecretsContextProvider: (
   props: PropsWithChildren<{}>,
-) => JSX.Element;
+) => React_2.JSX.Element;
 
 // @public
 export type TaskStream = {
@@ -326,7 +326,7 @@ export type TemplateParameterSchema = {
 
 // @public
 export const useCustomFieldExtensions: <
-  TComponentDataType = FieldExtensionOptions,
+  TComponentDataType = FieldExtensionOptions<unknown, unknown>,
 >(
   outlet: React.ReactNode,
 ) => TComponentDataType[];

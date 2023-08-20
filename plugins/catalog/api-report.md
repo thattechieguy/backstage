@@ -15,6 +15,7 @@ import { ExternalRouteRef } from '@backstage/core-plugin-api';
 import { IconComponent } from '@backstage/core-plugin-api';
 import { IndexableDocument } from '@backstage/plugin-search-common';
 import { InfoCardVariants } from '@backstage/core-components';
+import { JSX as JSX_2 } from 'react';
 import { Observable } from '@backstage/types';
 import { Overrides } from '@material-ui/core/styles/overrides';
 import { default as React_2 } from 'react';
@@ -27,6 +28,7 @@ import { StarredEntitiesApi } from '@backstage/plugin-catalog-react';
 import { StorageApi } from '@backstage/core-plugin-api';
 import { StyleRules } from '@material-ui/core/styles/withStyles';
 import { TableColumn } from '@backstage/core-components';
+import { TableOptions } from '@backstage/core-components';
 import { TableProps } from '@backstage/core-components';
 import { TabProps } from '@material-ui/core';
 import { UserListFilterKind } from '@backstage/plugin-catalog-react';
@@ -38,7 +40,7 @@ export interface AboutCardProps {
 }
 
 // @public (undocumented)
-export function AboutContent(props: AboutContentProps): JSX.Element;
+export function AboutContent(props: AboutContentProps): React_2.JSX.Element;
 
 // @public
 export interface AboutContentProps {
@@ -47,7 +49,7 @@ export interface AboutContentProps {
 }
 
 // @public (undocumented)
-export function AboutField(props: AboutFieldProps): JSX.Element;
+export function AboutField(props: AboutFieldProps): React_2.JSX.Element;
 
 // @public
 export interface AboutFieldProps {
@@ -78,7 +80,9 @@ export const CatalogEntityPage: () => JSX.Element;
 export const CatalogIndexPage: (props: DefaultCatalogPageProps) => JSX.Element;
 
 // @public @deprecated (undocumented)
-export function CatalogKindHeader(props: CatalogKindHeaderProps): JSX.Element;
+export function CatalogKindHeader(
+  props: CatalogKindHeaderProps,
+): React_2.JSX.Element;
 
 // @public
 export interface CatalogKindHeaderProps {
@@ -136,7 +140,7 @@ export interface CatalogSearchResultListItemProps {
 
 // @public (undocumented)
 export const CatalogTable: {
-  (props: CatalogTableProps): JSX.Element;
+  (props: CatalogTableProps): React_2.JSX.Element;
   columns: Readonly<{
     createNameColumn(
       options?:
@@ -243,6 +247,8 @@ export interface DependsOnComponentsCardProps {
   // (undocumented)
   columns?: TableColumn<ComponentEntity>[];
   // (undocumented)
+  tableOptions?: TableOptions;
+  // (undocumented)
   title?: string;
   // (undocumented)
   variant?: InfoCardVariants;
@@ -252,6 +258,8 @@ export interface DependsOnComponentsCardProps {
 export interface DependsOnResourcesCardProps {
   // (undocumented)
   columns?: TableColumn<ResourceEntity>[];
+  // (undocumented)
+  tableOptions?: TableOptions;
   // (undocumented)
   title?: string;
   // (undocumented)
@@ -298,7 +306,7 @@ export const EntityHasSubcomponentsCard: (
 export const EntityHasSystemsCard: (props: HasSystemsCardProps) => JSX.Element;
 
 // @public (undocumented)
-export const EntityLabelsCard: (props: EntityLabelsCardProps) => JSX.Element;
+export const EntityLabelsCard: (props: EntityLabelsCardProps) => JSX_2.Element;
 
 // @public (undocumented)
 export interface EntityLabelsCardProps {
@@ -310,7 +318,7 @@ export interface EntityLabelsCardProps {
 
 // @public
 export const EntityLayout: {
-  (props: EntityLayoutProps): JSX.Element;
+  (props: EntityLayoutProps): React_2.JSX.Element;
   Route: (props: EntityLayoutRouteProps) => null;
 };
 
@@ -345,7 +353,7 @@ export type EntityLayoutRouteProps = {
 };
 
 // @public (undocumented)
-export const EntityLinksCard: (props: EntityLinksCardProps) => JSX.Element;
+export const EntityLinksCard: (props: EntityLinksCardProps) => JSX_2.Element;
 
 // @public (undocumented)
 export interface EntityLinksCardProps {
@@ -361,10 +369,10 @@ export type EntityLinksEmptyStateClassKey = 'code';
 // @public @deprecated (undocumented)
 export const EntityListContainer: (props: {
   children: ReactNode;
-}) => JSX.Element;
+}) => JSX_2.Element;
 
 // @public
-export function EntityOrphanWarning(): JSX.Element;
+export function EntityOrphanWarning(): React_2.JSX.Element;
 
 // @public (undocumented)
 export interface EntityPredicates {
@@ -375,11 +383,14 @@ export interface EntityPredicates {
 }
 
 // @public
-export function EntityProcessingErrorsPanel(): JSX.Element | null;
+export function EntityProcessingErrorsPanel(): React_2.JSX.Element | null;
+
+// @public
+export function EntityRelationWarning(): React_2.JSX.Element | null;
 
 // @public (undocumented)
 export const EntitySwitch: {
-  (props: EntitySwitchProps): JSX.Element;
+  (props: EntitySwitchProps): React_2.JSX.Element;
   Case: (_props: EntitySwitchCaseProps) => null;
 };
 
@@ -405,7 +416,22 @@ export interface EntitySwitchProps {
 }
 
 // @public @deprecated (undocumented)
-export const FilterContainer: (props: { children: ReactNode }) => JSX.Element;
+export const FilterContainer: (props: {
+  children: ReactNode;
+  options?:
+    | {
+        drawerBreakpoint?:
+          | number
+          | 'xs'
+          | 'sm'
+          | 'md'
+          | 'lg'
+          | 'xl'
+          | undefined;
+        drawerAnchor?: 'left' | 'top' | 'bottom' | 'right' | undefined;
+      }
+    | undefined;
+}) => JSX_2.Element;
 
 // @public @deprecated (undocumented)
 export const FilteredEntityLayout: (props: {
@@ -423,14 +449,26 @@ export function hasCatalogProcessingErrors(
 // @public (undocumented)
 export interface HasComponentsCardProps {
   // (undocumented)
+  title?: string;
+  // (undocumented)
   variant?: InfoCardVariants;
 }
 
 // @public
 export function hasLabels(entity: Entity): boolean;
 
+// @public
+export function hasRelationWarnings(
+  entity: Entity,
+  context: {
+    apis: ApiHolder;
+  },
+): Promise<boolean>;
+
 // @public (undocumented)
 export interface HasResourcesCardProps {
+  // (undocumented)
+  title?: string;
   // (undocumented)
   variant?: InfoCardVariants;
 }
@@ -438,11 +476,17 @@ export interface HasResourcesCardProps {
 // @public (undocumented)
 export interface HasSubcomponentsCardProps {
   // (undocumented)
+  tableOptions?: TableOptions;
+  // (undocumented)
+  title?: string;
+  // (undocumented)
   variant?: InfoCardVariants;
 }
 
 // @public (undocumented)
 export interface HasSystemsCardProps {
+  // (undocumented)
+  title?: string;
   // (undocumented)
   variant?: InfoCardVariants;
 }
@@ -495,6 +539,7 @@ export type RelatedEntitiesCardProps<T extends Entity> = {
   emptyMessage: string;
   emptyHelpLink: string;
   asRenderableEntities: (entities: Entity[]) => T[];
+  tableOptions?: TableOptions;
 };
 
 // @public (undocumented)
