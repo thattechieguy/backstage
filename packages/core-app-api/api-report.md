@@ -64,6 +64,8 @@ import { SessionState } from '@backstage/core-plugin-api';
 import { StorageApi } from '@backstage/core-plugin-api';
 import { StorageValueSnapshot } from '@backstage/core-plugin-api';
 import { SubRouteRef } from '@backstage/core-plugin-api';
+import { TranslationMessages } from '@backstage/core-plugin-api/alpha';
+import { TranslationResource } from '@backstage/core-plugin-api/alpha';
 
 // @public
 export class AlertApiForwarder implements AlertApi {
@@ -220,6 +222,11 @@ export type AppOptions = {
   themes: (Partial<AppTheme> & Omit<AppTheme, 'theme'>)[];
   configLoader?: AppConfigLoader;
   bindRoutes?(context: { bind: AppRouteBinder }): void;
+  __experimentalTranslations?: {
+    fallbackLanguage?: string | string[];
+    supportedLanguages?: string[];
+    resources?: Array<TranslationMessages | TranslationResource>;
+  };
 };
 
 // @public
@@ -538,10 +545,10 @@ export type OAuth2Session = {
     idToken: string;
     accessToken: string;
     scopes: Set<string>;
-    expiresAt: Date;
+    expiresAt?: Date;
   };
   profile: ProfileInfo;
-  backstageIdentity: BackstageIdentityResponse;
+  backstageIdentity?: BackstageIdentityResponse;
 };
 
 // @public
